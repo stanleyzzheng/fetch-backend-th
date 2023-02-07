@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Receipt
 
 # Create your views here.
 from rest_framework.decorators import (
