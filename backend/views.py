@@ -12,7 +12,7 @@ from rest_framework.decorators import (
 from rest_framework.response import Response
 
 
-@api_view(["POST"])
+@api_view(["POST", "GET"])
 def process(request):
     if request.method == "POST":
         serializer = ReceiptSerializer(data=request.data)
@@ -20,3 +20,7 @@ def process(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "GET":
+        receipts = Receipt.objects.all()
+        serializer = ReceiptSerializer(receipts, many=True)
+        return Response(serializer.data)
