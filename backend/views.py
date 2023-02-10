@@ -24,3 +24,14 @@ def process(request):
         receipts = Receipt.objects.all()
         serializer = ReceiptSerializer(receipts, many=True)
         return Response(serializer.data)
+
+
+@api_view(["GET"])
+def points(request, pk):
+    try:
+        receipt = Receipt.objects.get(pk=pk)
+    except Receipt.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == "GET":
+        # serializer = ReceiptSerializer(receipt)
+        return Response(receipt.points)

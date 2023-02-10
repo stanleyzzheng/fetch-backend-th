@@ -25,3 +25,9 @@ class Receipt(models.Model):
     purchaseTime = models.TimeField(blank=False, null=False)
     # Allow max totals of 999999.99
     total = models.DecimalField(max_digits=8, decimal_places=2, blank=False, null=False)
+    points = models.IntegerField()
+
+    def get_points(self):
+        points = 0
+
+        return self.total
