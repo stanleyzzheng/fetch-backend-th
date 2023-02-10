@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-
+from .utils import get_points
 
 # Create your models here.
 
@@ -25,9 +25,11 @@ class Receipt(models.Model):
     purchaseTime = models.TimeField(blank=False, null=False)
     # Allow max totals of 999999.99
     total = models.DecimalField(max_digits=8, decimal_places=2, blank=False, null=False)
-    points = models.IntegerField()
 
-    def get_points(self):
-        points = 0
+    # points = models.IntegerField(editable=False)
 
-        return self.total
+    # def save(self, *args, **kwargs):
+    #     self.points = get_points(
+    #         self.retailer, self.items, self.purchaseDate, self.purchaseTime, self.total
+    #     )
+    #     super(Receipt, self).save(*args, **kwargs)

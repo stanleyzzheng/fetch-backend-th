@@ -6,10 +6,9 @@ from rest_framework import status
 # Create your views here.
 from rest_framework.decorators import (
     api_view,
-    permission_classes,
-    authentication_classes,
 )
 from rest_framework.response import Response
+from .utils import get_points
 
 
 @api_view(["POST", "GET"])
@@ -33,5 +32,5 @@ def points(request, pk):
     except Receipt.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == "GET":
-        # serializer = ReceiptSerializer(receipt)
-        return Response(receipt.points)
+        serializer = ReceiptSerializer(receipt)
+        return Response(serializer.data)
