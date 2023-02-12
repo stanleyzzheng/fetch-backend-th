@@ -4,6 +4,18 @@ import math
 
 
 def get_points(retailer, items, purchaseDate, purchaseTime, total):
+    """Genertes points gained from receipt object
+
+    Args:
+        retailer (string): retailer name
+        items (JSON object/dictionary): array of items on receipt
+        purchaseDate (date): date receipt was processed
+        purchaseTime (time): time receipt was processed
+        total (float): total of receipt
+
+    Returns:
+        float: points
+    """
     points = 0
     points += len(re.sub("[\W_]", "", retailer))
     # print(len(re.sub("[\W_]", "", retailer)))
@@ -14,27 +26,26 @@ def get_points(retailer, items, purchaseDate, purchaseTime, total):
     if float(total) % 0.25 == 0:
         points += 25
 
-    points += (int(len(items.all()) / 2)) * 5
-    # date = datetime.datetime.strptime(purchaseDate, "%Y-%m-%d")
+    points += (int(len(items) / 2)) * 5
+    date = datetime.datetime.strptime(purchaseDate, "%Y-%m-%d")
 
-    if int(purchaseDate.day) % 2 == 1:
+    if date.day % 2 == 1:
         # print(purchaseDate.day)
         # print("purchaseDate % 2 == 1")
         points += 6
 
-    # time = datetime.time(
-    #     int(purchaseTime.split(":")[0]), int(purchaseTime.split(":")[1])
-    # )
+    time = datetime.time(
+        int(purchaseTime.split(":")[0]), int(purchaseTime.split(":")[1])
+    )
     time1 = datetime.time(14, 0)
     time2 = datetime.time(16, 0)
-    if time1 < purchaseTime < time2:
-        print("time1 < purchaseTime < time2")
+    if time1 < time < time2:
+        # print("time1 < purchaseTime < time2")
         points += 10
-    print(items.all())
-    for item in items.all():
-        print(len(item["shortDescription"]))
+
+    for item in items:
         if len(item["shortDescription"]) % 3 == 0:
-            points += math.ceil(item["price"] * 0.2)
+            points += math.ceil(float(item["price"]) * 0.2)
     return points
 
 

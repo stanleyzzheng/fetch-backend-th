@@ -17,7 +17,9 @@ def process(request):
         serializer = ReceiptSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                {"id": serializer.data["id"]}, status=status.HTTP_201_CREATED
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == "GET":
         receipts = Receipt.objects.all()
@@ -33,4 +35,15 @@ def points(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == "GET":
         serializer = ReceiptSerializer(receipt)
-        return Response(serializer.data)
+
+        points = get_points(
+            retailer=serializer.data["retailer"],
+            items=serializer.data["items"],
+            purchaseDate=serializer.data["purchaseDate"],
+            purchaseTime=serializer.data["purchaseTime"],
+            total=serializer.data["total"],
+        )
+        # p = get_points(retailer, items, purchaseDate, purchaseTime, total)
+        # print(p)
+
+        return Response({"points": points})
