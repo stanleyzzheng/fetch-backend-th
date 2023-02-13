@@ -27,6 +27,18 @@ def process(request):
         return Response(serializer.data)
 
 
+# get single receipt
+@api_view(["GET"])
+def get_receipt_detail(request, pk):
+    try:
+        receipt = Receipt.objects.get(pk=pk)
+    except Receipt.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == "GET":
+        serializer = ReceiptSerializer(receipt)
+        return Response(serializer.data)
+
+
 @api_view(["GET"])
 def points(request, pk):
     try:
