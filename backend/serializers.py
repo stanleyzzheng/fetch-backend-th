@@ -39,6 +39,10 @@ class ReceiptSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         items = validated_data.pop("items")
 
+        if len(items) < 1:
+            raise serializers.ValidationError(
+                {"items": "Please enter the amount of items on receipt"}
+            )
         receipt = Receipt.objects.create(**validated_data)
 
         for item in items:
