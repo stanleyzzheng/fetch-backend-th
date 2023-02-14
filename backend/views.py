@@ -24,7 +24,7 @@ def process(request):
     elif request.method == "GET":
         receipts = Receipt.objects.all()
         serializer = ReceiptSerializer(receipts, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 # get single receipt
@@ -36,7 +36,7 @@ def get_receipt_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == "GET":
         serializer = ReceiptSerializer(receipt)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
@@ -58,4 +58,4 @@ def points(request, pk):
         # p = get_points(retailer, items, purchaseDate, purchaseTime, total)
         # print(p)
 
-        return Response({"points": points})
+        return Response({"points": points}, status=status.HTTP_200_OK)
