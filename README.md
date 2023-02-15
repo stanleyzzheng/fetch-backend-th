@@ -6,7 +6,7 @@ This is a Django Rest Framework API that provides endpoints for Fetch Rewards' b
 3. Run Docker image on port 8000: `docker run -d -p 8000:8000 django_project`
 
 ## Usage
-Test your application with Postman or your testing method of choice.
+Test your application with Postman or your testing method of choice on `localhost:8000` or `127.0.0.1:8000`.
 
 ## API endpoints:
 - `GET /receipts/` get all receipts. 
