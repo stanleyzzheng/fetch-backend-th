@@ -17,5 +17,8 @@ Go ahead and test your application with Postman or your testing method of choice
 
 
 ## Tech stack/ languages used:
-1. Python/Django/django-rest-framework + sqlite3 database for testing
+- Python
+- Django
+- django-rest-framework
+- sqlite3 database for testing
 
