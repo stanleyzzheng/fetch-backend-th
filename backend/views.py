@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from .utils import get_points
 
 
+# POST request for posting receipt data
 @api_view(["POST"])
 def process(request):
     if request.method == "POST":
@@ -23,6 +24,7 @@ def process(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+#  GET all receipts from database
 @api_view(["GET"])
 def get_all_receipts(request):
     if request.method == "GET":
@@ -49,6 +51,7 @@ def get_receipt_detail(request, pk):
         return Response({f"{pk} deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
+# GET points with args: pk
 @api_view(["GET"])
 def points(request, pk):
     try:
