@@ -38,7 +38,7 @@ def get_receipt_detail(request, pk):
         receipt = Receipt.objects.get(pk=pk)
     except Receipt.DoesNotExist:
         return Response(
-            {"error": "Could not find your requested receipt"},
+            {"error": "receipt with id you request could not be found"},
             status=status.HTTP_404_NOT_FOUND,
         )
     if request.method == "GET":
@@ -55,7 +55,7 @@ def points(request, pk):
         receipt = Receipt.objects.get(pk=pk)
     except Receipt.DoesNotExist:
         return Response(
-            {"error": "Could not find your requested receipt"},
+            {"error": "receipt with id you request could not be found"},
             status=status.HTTP_404_NOT_FOUND,
         )
     if request.method == "GET":
