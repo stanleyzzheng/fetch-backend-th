@@ -11,8 +11,8 @@ Go ahead and test your application with Postman or your testing method of choice
 ## API endpoints:
 - `GET /receipts/` gets all receipts. 
 - `GET /receipts/[id]/` gets single receipt detail.
-3.`POST /receipts/process/` posts receipt with format given, returns JSON response with id.
-4.`GET /receipts/[id]/points/` returns the points for the receipt.
+- `POST /receipts/process/` posts receipt with format given, returns JSON response with id.
+- `GET /receipts/[id]/points/` returns the points for the receipt.
 
 
 
