@@ -21,11 +21,14 @@ def process(request):
                 {"id": serializer.data["id"]}, status=status.HTTP_201_CREATED
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == "GET":
+
+
+@api_view(["GET"])
+def get_all_receipts(request):
+    if request.method == "GET":
         receipts = Receipt.objects.all()
         serializer = ReceiptSerializer(receipts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 # get single receipt
 @api_view(["GET"])
