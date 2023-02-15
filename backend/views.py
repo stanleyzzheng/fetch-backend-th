@@ -37,7 +37,10 @@ def get_receipt_detail(request, pk):
     try:
         receipt = Receipt.objects.get(pk=pk)
     except Receipt.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(
+            {"error": "Could not find your requested receipt"},
+            status=status.HTTP_404_NOT_FOUND,
+        )
     if request.method == "GET":
         serializer = ReceiptSerializer(receipt)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -51,7 +54,10 @@ def points(request, pk):
     try:
         receipt = Receipt.objects.get(pk=pk)
     except Receipt.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(
+            {"error": "Could not find your requested receipt"},
+            status=status.HTTP_404_NOT_FOUND,
+        )
     if request.method == "GET":
         serializer = ReceiptSerializer(receipt)
 
