@@ -1,4 +1,4 @@
-# fetch-backend-th
+# Fetch Rewards backend take-home assignment
 This is a Django Rest Framework API that provides endpoints for Fetch Rewards backend take-home assignment.
 ## Installation with Docker
 1. Clone repository: `git clone https://github.com/stanleyzzheng/fetch-backend-th [your-directory-name-of-choice]`
