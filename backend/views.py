@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from .utils import get_points
 
 
-@api_view(["POST", "GET"])
+@api_view(["POST"])
 def process(request):
     if request.method == "POST":
         serializer = ReceiptSerializer(data=request.data)
@@ -30,8 +30,9 @@ def get_all_receipts(request):
         serializer = ReceiptSerializer(receipts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 # get single receipt
-@api_view(["GET"])
+@api_view(["GET", "DELETE"])
 def get_receipt_detail(request, pk):
     try:
         receipt = Receipt.objects.get(pk=pk)
@@ -40,6 +41,9 @@ def get_receipt_detail(request, pk):
     if request.method == "GET":
         serializer = ReceiptSerializer(receipt)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == "DELETE":
+        receipt.delete()
+        return Response({f"{pk} deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(["GET"])
