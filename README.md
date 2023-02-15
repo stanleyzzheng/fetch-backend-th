@@ -9,10 +9,10 @@ This is a Django Rest Framework API that provides endpoints for Fetch Rewards ba
 Go ahead and test your application with Postman or your testing method of choice.
 
 ## API endpoints:
-`GET /receipts/` gets all receipts. 
-`GET /receipts/[id]/` gets single receipt detail.
-`POST /receipts/process/` posts receipt with format given, returns JSON response with id.
-`GET /receipts/[id]/points/` returns the points for the receipt.
+-`GET /receipts/` gets all receipts. 
+-`GET /receipts/[id]/` gets single receipt detail.
+-`POST /receipts/process/` posts receipt with format given, returns JSON response with id.
+-`GET /receipts/[id]/points/` returns the points for the receipt.
 
 
 
