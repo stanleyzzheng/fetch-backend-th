@@ -9,19 +9,13 @@ This is a Django Rest Framework API that provides endpoints for Fetch Rewards ba
 Go ahead and test your application with Postman or your testing method of choice.
 
 ## API endpoints:
-1. `POST /receipts/process/` posts receipt with format given, returns JSON response with id.
-2. `GET /receipts/[id]/points/` returns the points for the receipt.
-3. `GET /receipts/` gets all receipts. 
-4. `GET /receipts/[id]/` gets single receipt detail.
+`GET /receipts/` gets all receipts. 
+`GET /receipts/[id]/` gets single receipt detail.
+`POST /receipts/process/` posts receipt with format given, returns JSON response with id.
+`GET /receipts/[id]/points/` returns the points for the receipt.
+
 
 
 ## Tech stack/ languages used:
-1. Python/Django/django-rest-framework + built in django sqlite3 database for testing
+1. Python/Django/django-rest-framework + sqlite3 database for testing
 
-## Local Testing
-You can also test project locally if you have python 3.x installed in your machine
-1. git clone repository in your directory of choice
-2. `python -m venv venv`
-3. `venv/scripsts/activate`
-4. `pip install -r requirements.txt`
-5. `python manage.py runserver`
