@@ -10,9 +10,10 @@ Test your application with Postman or your testing method of choice on `localhos
 
 ## API endpoints:
 - `GET /receipts/` get all receipts. 
-- `GET /receipts/[id]/` get single receipt detail.
+- `GET /receipts/{id}/` get single receipt detail.
+- `DELETE /receipts/{id}/` delete single receipt with id.
 - `POST /receipts/process/` post receipt with format given, returns JSON response with id.
-- `GET /receipts/[id]/points/` return points rewarded for receipt.
+- `GET /receipts/{id}/points/` return points rewarded for receipt.
 
 
 
