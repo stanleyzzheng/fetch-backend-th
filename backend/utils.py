@@ -17,23 +17,22 @@ def get_points(retailer, items, purchaseDate, purchaseTime, total):
         float: points
     """
     points = 0
+    #  points += 1 for each alphanumeric in name
     points += len(re.sub("[\W_]", "", retailer))
-    # print(len(re.sub("[\W_]", "", retailer)))
-
+    # calculate if total is a flat integer
     if float(total).is_integer():
         points += 50
-
+    # calculate if total is a multiple of .25
     if float(total) % 0.25 == 0:
         points += 25
-
+    # calcaulte points for pairs of items
     points += (int(len(items) / 2)) * 5
+
+    #  calculate for if the date is odd
     date = datetime.datetime.strptime(purchaseDate, "%Y-%m-%d")
-
     if date.day % 2 == 1:
-        # print(purchaseDate.day)
-        # print("purchaseDate % 2 == 1")
         points += 6
-
+    # calculate for if time is between 14:00 and 16:00
     time = datetime.time(
         int(purchaseTime.split(":")[0]), int(purchaseTime.split(":")[1])
     )
@@ -43,6 +42,7 @@ def get_points(retailer, items, purchaseDate, purchaseTime, total):
         # print("time1 < purchaseTime < time2")
         points += 10
 
+    # calculate points for each item length that is a multiple of 3 * .2
     for item in items:
         if len(item["shortDescription"]) % 3 == 0:
             points += math.ceil(float(item["price"]) * 0.2)

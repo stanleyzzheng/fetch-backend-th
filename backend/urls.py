@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+# urlpatterns for api routing
 urlpatterns = [
     path("", views.get_all_receipts, name="get_all_receipts"),
     path("process/", views.process, name="receipts"),
